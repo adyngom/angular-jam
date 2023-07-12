@@ -100,3 +100,9 @@ ng g c components/movie-detail --standalone -s --selector MovieDetail -c OnPush
   </main>
 </div>
 ```
+
+8. Add Scully early on if possible
+
+```bash
+ng add @scullyio/init
+```
