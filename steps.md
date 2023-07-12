@@ -331,3 +331,20 @@ extraRoutes: ['/movies/:collection'],
 Now we should have all the pages generated. Let's check in our `dist/static` folder.
 
 We can see now we have a `movies` folder which contains a subfolder of each of the dynamic routes with a root `index.html` file.
+
+15. Add Netlify
+    Create a `netlify.toml` file in the root of your project and add the following:
+
+```toml
+[build]
+command = "npm run jam-it"
+publish = "dist/static"
+```
+
+then if not already done instal the netlify cli
+
+```bash
+npm install netlify-cli -g
+```
+
+then run `netlify init` and follow the instructions
