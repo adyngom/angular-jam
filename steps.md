@@ -44,3 +44,5 @@ then test that Tailwind works. Replace main component HTML with
 ```html
 <h1 class="text-3xl font-bold underline">Hello world!</h1>
 ```
+
+4. Put the general page layout - full screen viewport with fixed header (skip dark mode toggle for now)
