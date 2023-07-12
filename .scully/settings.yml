@@ -1,1 +1,11 @@
 identifier: l4jezeuaxexcy4o8
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: aucine
+homeFolder: /Users/techlabs28/zero-to-hero/aucine
+distFolder: ./dist/aucine
+outDir: /Users/techlabs28/zero-to-hero/aucine/dist/static
+handle404: ''
+allowErrorCollect: true

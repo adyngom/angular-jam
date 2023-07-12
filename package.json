@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "scully": "npx scully --project aucine"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +21,7 @@
     "@angular/router": "^16.0.0",
     "@scullyio/init": "^2.1.21",
     "@scullyio/ng-lib": "^2.1.41",
+    "@scullyio/scully-plugin-puppeteer": "^2.1.41",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

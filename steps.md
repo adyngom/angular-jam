@@ -175,3 +175,36 @@ const validator = async () => [];
 
 registerPlugin("render", myPlugin, myFunctionPlugin, validator);
 ```
+
+10. Now build the app and run Scully
+
+```bash
+ng build --prod
+```
+
+`--prod` may be redundant in newer versions of Angular
+
+After the build - if succesfull you will have a `dist` folder with an `aucine` subfolder - run
+
+```bash
+npx scully --project aucine
+```
+
+If you have an error that `puppeteer` is missing, install it first
+
+```bash
+ npm install @scullyio/scully-plugin-puppeteer
+```
+
+then run the scully command again
+
+actually let's save the command in the `package.json` file
+
+```json
+"scripts": {
+    // other scripts
+    "scully": "npx scully --project aucine"
+  },
+```
+
+and now you can simply run `npm run scully` to generate the static site
