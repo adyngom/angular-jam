@@ -17,3 +17,4 @@
 (You can skip this, or any future question by using the --noPrompt flag)
 No configuration for route "/category/:collection" found. Skipping
 handleUnknownRoute: "/category/now_playing", 404:""
+handleUnknownRoute: "/movie/1", 404:""
