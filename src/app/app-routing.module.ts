@@ -6,25 +6,18 @@ import { CategoryPageComponent } from './components/category-page/category-page.
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'movies/now_playing',
-    pathMatch: 'full',
+    component: CategoryPageComponent,
   },
   {
     path: 'movies/:collection',
     component: MoviesListComponent,
   },
-
   {
     path: 'movie/:id',
     loadComponent: () =>
       import('./components/movie-detail/movie-detail.component').then(
         (m) => m.MovieDetailComponent
       ),
-  },
-  {
-    path: '**',
-    redirectTo: 'movies/now_playing',
-    pathMatch: 'full',
   },
 ];
 
