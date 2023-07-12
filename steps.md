@@ -208,3 +208,52 @@ actually let's save the command in the `package.json` file
 ```
 
 and now you can simply run `npm run scully` to generate the static site
+
+11. Running the static site with `scully serve`
+    Let's add a new entry to our package.json file to run the static site with `scully serve`
+
+```json
+"scripts": {
+    // other scripts
+    "scully": "npx scully --project aucine",
+    "scully:serve": "npx scully serve"
+  },
+```
+
+This will by default serve two versions of the site:
+
+- the static version residing on `dist/static` on port `:1668`
+- the Angular version residing on `dist/aucine` on port `:1864`
+
+Please note that only all your explicit routes will be statically generated. We will show how to generate static version of dynamic routes in the section 13.
+
+12. Running the static site with `http-server`
+    We will need to run a server locally to test the static site. If you do not have a server installed, you can install `http-server` globally. Here is the [link](https://www.npmjs.com/package/http-server) to the npm package. Below are a few installation options.
+
+### Running on-demand:
+
+Using npx you can run the script without installing it first:
+
+```bash
+npx http-server [path] [options]
+```
+
+### Globally via npm
+
+```bash
+npm install --global http-server
+```
+
+This will install http-server globally so that it may be run from the command line anywhere.
+
+### As a dependency in your npm package:
+
+```bash
+npm install http-server
+```
+
+After install navigate to `dist/static` and run `http-server` :
+
+```bash
+cd dist/static && http-server .
+```
