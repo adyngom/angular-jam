@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MoviesListComponent } from './components/movies-list/movies-list.component';
+import { CategoryPageComponent } from './components/category-page/category-page.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'category/now_playing',
+    redirectTo: 'movies/now_playing',
     pathMatch: 'full',
   },
   {
-    path: 'category/:collection',
+    path: 'movies/:collection',
     component: MoviesListComponent,
   },
 
@@ -22,7 +23,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'category/now_playing',
+    redirectTo: 'movies/now_playing',
     pathMatch: 'full',
   },
 ];

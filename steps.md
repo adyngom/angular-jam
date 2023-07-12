@@ -257,3 +257,32 @@ After install navigate to `dist/static` and run `http-server` :
 ```bash
 cd dist/static && http-server .
 ```
+
+13. Let's tackle the dynamic routes
+    Looking at the current state of our app we have the root route and two dynamic routes. Scully has a simple very straightforward plugin system that allows us to create plugins to handle dynamic routes. Let's create a plugin to handle the dynamic routes.
+
+Add a redirect to our root component (we will remove later on) and add more semantic routes
+
+```js
+const appRoutes: Routes = [
+  {
+    path: "",
+    redirectTo: "movies/now_playing",
+    pathMatch: "full",
+  },
+  {
+    path: "movies/:collection",
+    component: MoviesListComponent,
+  },
+
+  {
+    path: "movie/:id",
+    loadComponent: () => import("./components/movie-detail/movie-detail.component").then((m) => m.MovieDetailComponent),
+  },
+  {
+    path: "**",
+    redirectTo: "movies/now_playing",
+    pathMatch: "full",
+  },
+];
+```
