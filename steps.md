@@ -106,3 +106,72 @@ ng g c components/movie-detail --standalone -s --selector MovieDetail -c OnPush
 ```bash
 ng add @scullyio/init
 ```
+
+Restart app and run `ng serve` again, the `scully init` should generate the `scully.<projectName>.config.ts` file
+
+9. If the config file is not created go through the manual installation steps. You cn find the documentation [here](https://scully.io/docs/learn/getting-started/manualInstallation/)
+
+- 9.1 - Add the `scully ng-lib` to the project
+
+```bash
+npm i @scullyio/ng-lib
+```
+
+- 9.2 - Then import `ScullyLibModule` into your `app.module.ts`
+
+- 9.3 - Now create a `scully.[PROJECT_NAME].config.ts`, replacing [PROJECT_NAME], with the name of your Angular project. Then add the content of the Scully config file like shown below:
+
+```js
+import { ScullyConfig } from "@scullyio/scully";
+
+export const config: ScullyConfig = {
+  projectRoot: "./src",
+  projectName: "aucine",
+  distFolder: "./dist/aucine", // output directory of your Angular build artifacts
+  outDir: "./dist/static", // directory for scully build artifacts
+  defaultPostRenderers: [],
+  routes: {},
+};
+```
+
+- 9.4 - Create a `plugins` directory.
+  At the root of your project folder, if it doesn't already exist, create a directory called `scully` do not confuse it with the folder named `.scully` that might've already been created in one the steps before. Inside the `scully` directory, create a `tsconfig.json` file with the following content:
+
+```json
+// ./scully/tsconfig.json
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "importHelpers": false,
+    "lib": ["ES2019", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es2018",
+    "types": ["node"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "typeRoots": ["../node_modules/@types"],
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["./**/*spec.ts"]
+}
+```
+
+Then, create a plugins directory inside the scully directory, and add a file named plugins.ts, with the following content:
+
+```js
+// ./scully/plugins/plugins.ts
+import { registerPlugin, getPluginConfig } from "@scullyio/scully";
+
+export const myPlugin = "myPlugin";
+
+const myFunctionPlugin = async (html: string): Promise<string> => {
+  return html;
+};
+
+const validator = async () => [];
+
+registerPlugin("render", myPlugin, myFunctionPlugin, validator);
+```
