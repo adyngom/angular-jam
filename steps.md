@@ -286,3 +286,48 @@ const appRoutes: Routes = [
   },
 ];
 ```
+
+Running the `npx run scully` command we see that we still have only one page generated which is the root page. Let's create a plugin to handle the dynamic routes.
+
+Navigate to `./scully/plugins`. Scully comes with different types of plugins, you can read about all the types [here](https://scully.io/docs/Reference/plugins/overview/)
+
+We will create a `router` plugin. Add these imports to your `scully.aucine.config.ts` file
+
+```js
+import { registerPlugin, getPluginConfig, HandledRoute } from "@scullyio/scully";
+```
+
+Now add the following function:
+
+```js
+// movies collection plugin
+function moviesCollectionPlugin(route: string = "", config = {}): Promise<HandledRoute[]> {
+  return Promise.all([{ route: "/movies/now_playing" }, { route: "/movies/popular" }, { route: "/movies/top_rated" }, { route: "/movies/upcoming" }]);
+}
+
+const moviesValidator = async () => [];
+
+registerPlugin("router", "moviesPages", moviesCollectionPlugin, moviesValidator);
+```
+
+and now in the `config` object under `routes` add the following:
+
+```js
+routes: {
+    '/movies/:collection': {
+      type: 'moviesPages',
+    },
+  },
+```
+
+and run `npm run scully` again. You should see that now we have 5 pages generated. The root page and the 4 dynamic routes.
+
+if you still see only one page generated add an `extraRoutes` property to the `config` object and add the path explicitly
+
+```js
+extraRoutes: ['/movies/:collection'],
+```
+
+Now we should have all the pages generated. Let's check in our `dist/static` folder.
+
+We can see now we have a `movies` folder which contains a subfolder of each of the dynamic routes with a root `index.html` file.

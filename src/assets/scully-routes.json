@@ -1,1 +1,1 @@
-[{"route":"/"}]
+[{"route":"/"},{"route":"/movies/now_playing"},{"route":"/movies/popular"},{"route":"/movies/top_rated"},{"route":"/movies/upcoming"}]
